@@ -1,0 +1,27 @@
+<h4 class="book_menu"><a href="#" class="book_list">书籍列表</a> <% if(author){%><em class="menu_filter">></em> <a href="#" class="book_list_author"><em class="author"><%=author.nicename%>的书籍列表</em></a><% } %></h4>
+<table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>书籍</th>
+        <th>作者</th>
+        <th>简介</th>
+        <th>目标字数(万字)</th>
+        <th>加入时间</th>
+        <th>最后修改</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<!--分页-->
+<div class="page">
+    <ul class="pagination"></ul>
+</div>
+<%-contentFor('style') %>
+<style type="text/css">
+    .book_menu em.author{font-style: normal;color:#f00;}
+</style>
+<%-contentFor('additem') %>
+<%-contentFor('script') %>
+<script src="/js/book.js"></script>

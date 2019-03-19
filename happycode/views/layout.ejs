@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理系统--<%=title%></title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <%-style%>
+</head>
+<body>
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <span class="navbar-brand" style="margin: 0 auto;" style="font-size: 20px">后台管理系统</span>
+        </div>
+    </div>
+    <ul id="managementSys" class="list-inline">
+        <!--菜单栏-->
+        <li id="menu">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title" style="font-size: 19px;">管理类别</div>
+                </div>
+                <div class="panel-body" style="padding:0">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="/user" class="list-group-item">用户管理</a></li>
+                        <li><a href="/author" class="list-group-item">作者管理</a></li>
+                        <li><a href="/hook" class="list-group-item">插件管理</a></li>
+                        <li><a href="/book" class="list-group-item">书籍管理</a></li>
+                        <li><a href="/play" class="list-group-item">新玩法</a></li>
+                        <li><a href="/focus" class="list-group-item">焦点图</a></li>
+                        <li><a href="/version" class="list-group-item">版本管理</a></li>
+                        <li><a href="/config" class="list-group-item">设置</a></li>
+                        <li><a href="/user/logout" class="list-group-item">退出</a></li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <div id="list" class="table-responsive">
+            <!--列表-->
+            <%-body%>
+        </div>
+    </ul>
+    <%-additem%>
+    <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/ajax.js"></script>
+    <script type="text/javascript" src="/js/pagination.js"></script>
+    <script type="text/javascript" src="/js/moment.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var paths=location.pathname;
+        var menu=$('.nav-stacked li');
+        switch(paths){
+            case '/user':
+                menu.removeClass('active').eq(0).addClass('active');
+                break;
+            case '/author':
+                menu.removeClass('active').eq(1).addClass('active');
+                break;
+            case '/hook':
+                menu.removeClass('active').eq(2).addClass('active');
+                break;
+            case '/book':
+                menu.removeClass('active').eq(3).addClass('active');
+                break;
+            case '/play':
+                menu.removeClass('active').eq(4).addClass('active');
+                break;
+            case '/focus':
+                menu.removeClass('active').eq(5).addClass('active');
+                break;
+            case '/version':
+                menu.removeClass('active').eq(6).addClass('active');
+                break;
+            case '/config':
+                menu.removeClass('active').eq(7).addClass('active');
+                break;
+            default:
+               menu.removeClass('active').eq(0).addClass('active');    
+        }
+    });
+    </script>
+    <%-script%>
+</body>
+</html>

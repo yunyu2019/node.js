@@ -1,0 +1,141 @@
+<table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>标题</th>
+        <th>图片</th>
+        <th>链接</th>
+        <th>加入时间</th>
+        <th>排序</th>
+        <th>活跃状态</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<div class="add" style="text-align: right;">
+    <button type="button" id="create" class="btn btn-primary">添加</button>
+    <button type="button" id="reflash" class="btn btn-primary">刷新缓存</button>
+</div>
+<!--分页-->
+<div class="page">
+    <ul class="pagination"></ul>
+</div>
+<%-contentFor('style') %>
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-fileinput/css/fileinput.min.css">
+<style>
+    #mark{
+        display: none;
+        position: absolute;
+        top:0;
+        left:0;
+        background: #000;
+        opacity:0.5;
+        z-index:2;
+    }
+    #add,#change{
+        display: none;
+        background: white;
+        padding:50px 50px;
+        position: fixed;
+        top:15%;
+        z-index:3;
+    }
+    #add_message,#change_message{
+        display: none;
+    }
+    em.focus_active{
+       font-style: :normal;
+       color:#f00;
+    }
+    .help-block{
+        font-size: 12px;
+    }
+    .error-message{color:#f00;}
+    #focus_thumb{margin-bottom: 10px;}
+    .focus_descp{resize:none;}
+</style>
+<%-contentFor('additem') %>
+<div id="add">
+    <div class="closeBtn close" style="position: absolute;top: 20px;right: 20px;">&times;</div>
+    <form id="add_form" style="width: 250px;" method="post" action="/focus/add" enctype="multipart/form-data">
+        <div class="input-group">
+            <span class="input-group-addon">标题</span>
+            <input type="text" name="focusTitle" id="focus-title" class="title form-control" placeholder="请输入标题">
+        </div>
+        <br>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">链接</span>
+            <input type="text" name="focusUrl" id="focus-url" class="status form-control" placeholder="请输入状态">
+        </div>
+        <br>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">排序</span>
+            <input type="text" name="focusSort" id="focus-sort" class="status form-control" placeholder="排序" value="0">
+        </div>
+        <br>
+        <br>
+        <div class="input-group">
+            <input type="hidden" id="addfocusImg" name="focusImg" value="">
+            <input name="focusImage" multiple='mutiple' id="focus-image" class="focus-image" type="file">
+            <p class="help-block">支持jpg、jpeg、png、gif格式,大小不超过2.0M</p>
+            <p class="error-message"></p>
+        </div>
+        <div class="form-group"> 
+            <textarea name="focusDescp" id="focus_descp" class="form-control focus_descp" style="height: 100px;" placeholder="描述在150个字符以内"></textarea>
+        </div>
+        <br>
+        <div id="add_message" class="alert alert-danger"></div>
+        <div style="text-align: right;">
+            <button type="submit" class="btn btn-primary">添加</button>
+        </div>
+    </form>
+</div>
+<div id="change">
+    <div class="closeBtn close" style="position: absolute;top: 20px;right: 20px;">&times;</div>
+    <form id="change_form" style="width: 250px;" method="post" action="/focus/save" enctype="multipart/form-data">
+        <div class="input-group">
+            <span class="input-group-addon">标题</span>
+            <input type="text" name="focusTitle" id="focus-title" class="title form-control" placeholder="请输入标题">
+        </div>
+        <br>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">链接</span>
+            <input type="text" name="focusUrl" id="focus-url" class="status form-control" placeholder="请输入状态">
+        </div>
+        <br>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">排序</span>
+            <input type="text" name="focusSort" id="focus-sort" class="status form-control" placeholder="排序" value="0">
+        </div>
+        <br>
+        <br>
+        <div class="input-group">
+            <input type="hidden" id="changefocusImg" name="focusImg" value="">
+            <input name="focusImage" multiple='mutiple' id="focus-image" class="focus-image" type="file">
+            <p class="help-block">支持jpg、jpeg、png、gif格式,大小不超过2.0M</p>
+            <p class="error-message"></p>
+        </div>
+        <div class="form-group">
+            <textarea name="focusDescp" id="focus_descp" class="form-control focus_descp" style="height: 100px;" placeholder="描述在150个字符以内"></textarea>
+        </div>
+        <br>
+        <div id="change_message" class="alert alert-danger"></div>
+        <div style="text-align: right;">
+            <button type="submit" class="btn btn-primary">修改</button>
+        </div>
+    </form>
+</div>
+<div id="mark"></div>
+<%-contentFor('script') %>
+<script type="text/javascript" src="/js/close.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-fileinput/js/fileinput.min.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-fileinput/js/locales/zh.js"></script>
+<script type="text/javascript" src="/js/initfile-input.js"></script>
+<script type="text/javascript" src="/js/focus.js"></script>
+

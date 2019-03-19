@@ -1,0 +1,10 @@
+$(function(){
+    $('.closeBtn').on('click',function(){
+        $('#mark').css('display','none');
+        $('#add').css('display','none');
+        $('#change').css('display','none');
+        $('#content').css('display','none');
+        $('#add_message').html('').hide();
+        $('#change_message').html('').hide();
+    })
+})

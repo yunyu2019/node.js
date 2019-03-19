@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=title%></title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        #login{
+            width:20em;
+            margin:200px auto 0;
+        }
+        #warning{
+            display: none;
+            position: absolute;
+            top: 0;
+            left:0;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="warning">
+        <div class="alert alert-danger">
+            
+        </div>
+    </div>
+    <div id="login">
+        <form method="post" action="/user/login">
+            <div class="input-group">
+                <span class="input-group-addon">帐 号</span>
+                <input id="userName" type="username" name="User[email]" class="form-control" placeholder="请输入邮箱">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon">密 码</span>
+                <input id="passWord" type="password" name="User[pwd]" class="form-control" placeholder="请输入密码">
+            </div>
+            <br>
+            <button id="loginBtn" type="button"  class="btn btn-default btn-block">登 录</button>
+        </form>
+    </div>
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/login.js"></script>
+</body>
+</html>

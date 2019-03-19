@@ -1,0 +1,26 @@
+var express = require('express');
+var users=require('./member');
+var hook=require('./hook');
+var focus=require('./focus');
+var book=require('./book');
+var chapter=require('./chapter');
+var plays=require('./plays');
+var volumn=require('./volumn');
+var version=require('./version');
+var maps=require('./maps');
+var peoples=require('./peoples');
+var outlines=require('./outline');
+var app=express();
+app.disable('x-powered-by');
+app.use('/user',users);
+app.use('/book',book);
+app.use('/focus',focus);
+app.use('/chapter',chapter);
+app.use('/plays',plays);
+app.use('/hook',hook);
+app.use('/volumn',volumn);
+app.use('/version',version);
+app.use('/map',maps);
+app.use('/people',peoples);
+app.use('/outline',outlines);
+module.exports=app

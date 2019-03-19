@@ -1,0 +1,25 @@
+#managementSys{
+    padding:0 18px;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction:row;
+}
+#menu{
+    width:200px;
+    height:100%;
+    padding:0;
+}
+#list{
+    margin-left:16px;
+    width:99%;
+    position: relative;
+}
+.operation{
+    text-align: center;
+}
+#list .btn{
+    padding:0 5px;
+}
+.page{
+    text-align: center;
+}

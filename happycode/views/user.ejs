@@ -1,0 +1,100 @@
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>帐号</th>
+            <th>昵称</th>
+            <th>加入时间</th>
+            <th>最后登录</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<div class="add" style="text-align: right;">
+    <button type="button" class="btn btn-primary">添加用户</button>
+</div>
+<div class="page">
+    <ul class="pagination">
+    </ul>
+</div>
+<%-contentFor('style') %>
+<style>
+    #mark{
+        display: none;
+        position: absolute;
+        top:0;
+        left:0;
+        background: #000;
+        opacity:0.5;
+        z-index:2;
+    }
+    #add,#change{
+        display: none;
+        background: white;
+        padding:50px 50px;
+        position: fixed;
+        top:15%;
+        z-index:3;
+    }
+    #add_message,#change_message{
+        display: none;
+    }
+</style>
+<%-contentFor('additem') %>
+<div id="add">
+<div class="closeBtn close" style="position: absolute;top: 20px;right: 20px;">&times;</div>
+<form id="add_form" style="width: 250px;" method="post" action="/user/add">
+<div class="input-group">
+<span class="input-group-addon">昵称</span>
+<input type="text" name="userName" id="user-name" class="userName form-control" placeholder="昵称1-30个字符">
+</div>
+<br>
+<br>
+<div class="input-group">
+<span class="input-group-addon">帐户</span>
+<input type="text" name="userEmail" id="user-email" class="userName form-control" placeholder="请输入邮箱">
+</div>
+<br>
+<br>
+<div class="input-group">
+<span class="input-group-addon">密码</span>
+<input type="password" name="userPwd" id="user-pwd" class="passWord form-control" placeholder="6-12位字母数字组合">
+</div>
+<br>
+<br>
+<div id="add_message" class="alert alert-danger"></div>
+<br>
+<div style="text-align: right;">
+<button type="submit" class="btn btn-primary">添加</button>
+</div>
+</form>
+</div>
+<div id="change">
+        <div class="closeBtn close" style="position: absolute;top: 20px;right: 20px;">&times;</div>
+        <form id="change_form" style="width: 250px;" method="post" action="/user/save">
+            <div class="input-group">
+                <span class="input-group-addon">昵称</span>
+                <input type="text" id="userName" name="userName" class=" form-control" placeholder="昵称1-30个字符">
+            </div>
+            <br>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon">密码</span>
+                <input type="password" id="userPwd" name="userPwd" class="passWord form-control" placeholder="6-12位字母数字组合">
+            </div>
+            <br>
+            <br>
+            <div id="change_message" class="alert alert-danger"></div>
+            <br>
+            <div style="text-align: right;">
+                <button type="submit" class="btn btn-primary">修改</button>
+            </div>
+        </form>
+    </div>
+<div id="mark"></div>
+
+<%-contentFor('script') %>
+<script type="text/javascript" src="/js/close.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/user.js"></script>

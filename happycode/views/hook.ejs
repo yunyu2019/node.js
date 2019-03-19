@@ -1,0 +1,152 @@
+<table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>插件名称</th>
+        <th>插件分类</th>
+        <th>提供人</th>
+        <th>安装量</th>
+        <th>创建时间</th>
+        <th>启用状态</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<div class="add" style="text-align: right;">
+    <button type="button" class="btn btn-primary">添加</button>
+</div>
+<!--分页-->
+<div class="page">
+    <ul class="pagination"></ul>
+</div>
+<%-contentFor('style') %>
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-fileinput/css/fileinput.min.css">
+<style>
+    #mark{
+        display: none;
+        position: absolute;
+        top:0;
+        left:0;
+        background: #000;
+        opacity:0.5;
+        z-index:2;
+    }
+    #add,#change{
+        display: none;
+        background: white;
+        padding:50px 50px;
+        position: fixed;
+        top:15%;
+        z-index:3;
+    }
+    #add_message,#change_message{
+        display: none;
+    }
+    em.play_active{
+       font-style: :normal;
+       color:#f00;
+    }
+    .help-block{
+        font-size: 12px;
+    }
+    .error-message{color:#f00;}
+    #play_thumb{margin-bottom: 10px;}
+</style>
+<%-contentFor('additem') %>
+<div id="add">
+    <div class="closeBtn close" style="position: absolute;top: 20px;right: 20px;">&times;</div>
+    <form id="add_form" style="width: 250px;" method="post" action="/hook/add" enctype="multipart/form-data">
+        <div class="input-group">
+            <span class="input-group-addon">插件名称</span>
+            <input type="text" name="hookTitle" id="hook-title" class="title form-control" placeholder="请输入标题">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">插件分类</span>
+            <select id="hook-ect" name="HookEct" class="status form-control">
+                <option value="">请选择</option>
+                <option value="1">工具</option>
+                <option value="2">增强</option>
+                <option value="3">趣味</option>
+                <option value="4">主题</option>
+            </select>
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">来源</span>
+            <input type="text" name="hookSources" id="hook-sources" class="status form-control" placeholder="来源" value="">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">描述</span>
+            <textarea id="hook-desc" name="hook-desc" class="status form-control" placeholder="插件描述"></textarea>
+        </div>
+        <br>
+        <div class="input-group">
+            <input type="hidden" id="addhookFile" name="hookFile" value="">
+            <input name="hookFile" multiple='mutiple' id="hook-file" class="file hook-file" type="file">
+            <p class="help-block">支持zip、rar格式,大小不超过20M</p>
+            <p class="error-message"></p>
+        </div>
+        <br>
+        <div id="add_message" class="alert alert-danger"></div>
+        <div style="text-align: right;">
+            <button type="submit" class="btn btn-primary">添加</button>
+        </div>
+    </form>
+</div>
+<div id="change">
+    <div class="closeBtn close" style="position: absolute;top: 20px;right: 20px;">&times;</div>
+    <form id="change_form" style="width: 250px;" method="post" action="/hook/save" enctype="multipart/form-data">
+        <div class="input-group">
+            <span class="input-group-addon">标题</span>
+            <input type="text" name="hookTitle" id="hook-title" class="title form-control" placeholder="请输入标题">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">插件分类</span>
+            <select id="hook-ect" name="HookEct" class="status form-control">
+                <option value="">请选择</option>
+                <option value="1">工具</option>
+                <option value="2">增强</option>
+                <option value="3">趣味</option>
+                <option value="4">主题</option>
+            </select>
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">来源</span>
+            <input type="text" name="hookSources" id="hook-sources" class="status form-control" placeholder="来源" value="">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">描述</span>
+             <textarea id="hook-desc" name="hook-desc" class="status form-control" placeholder="插件描述"></textarea>
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">文件路径</span><input type="text" id="opath"  class="title form-control" value="" readonly="readonly">
+        </div>
+        <br>
+        <div class="input-group">
+            <input type="hidden" id="addhookFile" name="hookFile" value="">
+            <input name="hookFile" multiple='mutiple' id="hook-file" class="file hook-file" type="file">
+            <p class="help-block">支持zip、rar格式,大小不超过20M</p>
+            <p class="error-message"></p>
+        </div>
+        <br>
+        <div id="change_message" class="alert alert-danger"></div>
+        <div style="text-align: right;">
+            <button type="submit" class="btn btn-primary">修改</button>
+        </div>
+    </form>
+</div>
+<div id="mark"></div>
+<%-contentFor('script') %>
+<script type="text/javascript" src="/js/close.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/hook.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-fileinput/js/fileinput.min.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-fileinput/js/locales/zh.js"></script>
+

@@ -1,0 +1,82 @@
+<h4>系统设置</h4>
+    <form id="config_form" method="post" action="/config/save">
+      <div class="form-group " >
+        <label for="email">邮箱</label>
+        <input type="text" id="email" name="email" class="form-control" placeholder="请输入邮箱" value="<% if(data.email){%><%=data.email%><% } %>"/>
+      </div>
+      <div class="form-group " >
+        <label for="password">邮箱密码</label>
+        <input type="text" id="password" name="password" class="form-control" placeholder="请输入密码" value="<% if(data.emailpass){%><%=data.emailpass%><% } %>"/>
+      </div>
+      <div class="form-group " >
+        <label for="versionNum">版本号</label>
+        <input type="text" id="version" name="version" class="form-control" placeholder="请输入版本号" value="<% if(data.version){%><%=data.version%><% } %>"/>
+      </div>
+      <div class="form-group" >
+        <label for="dataNum">分页参数</label>
+        <input type="text" id="pagesize" name="pagesize" class="form-control" placeholder="请输入分页参数" value="<% if(data.pagesize){%><%=data.pagesize%><% } %>"/>
+      </div>
+      <div id="change_message" class="alert alert-danger"></div>
+      <button id="save" type="submit" class="btn btn-info" style="left:0;bottom: 25px;padding:6px 12px;">保存</button>
+    </form>
+<%-contentFor('style') %>
+<style type="text/css">
+#change_message{
+    display: none;
+}
+.form-group{
+    padding: 0 0 10px 0;
+}
+
+</style>
+<%-contentFor('additem') %>
+<%-contentFor('script') %>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(document).on('click','#config_form #save',function(){
+            $("#config_form").validate({
+                rules:{
+                    version:{required:true,number:true},
+                    pagesize:{required:true,digits:true},
+                    email:{required:true,email:true},
+                    password:{required:true}
+                },
+                messages:{
+                    version:{required:"版本号必填",number:"版本号必须是十进制数字(小数)"},
+                    pagesize:{required:"分页参数必填",digits:"分页参数必须是整数"},
+                    email:{
+                        required:"邮箱必须设置",email:"邮箱格式错误"
+                    },
+                    password:{required:"邮箱密码必须设置"}
+                },
+                submitHandler: function() {
+                    var version=$('#version').val();
+                    var pagesize=$('#pagesize').val();
+                    var email=$('#email').val();
+                    var password=$('#password').val();
+                    var post_data="Config[version]="+version+"&Config[pagesize]="+pagesize+"&Config[email]="+email+"&Config[emailpass]="+password;
+                    $.ajax({
+                        type:"post",
+                        url:'/config/save',
+                        data:post_data,
+                        success:function(result){
+                            if(result.code!=0){
+                                $('#change_message').html('修改失败').hide(3000);
+                            }else{
+                                $('#change_message').html('修改成功').hide(3000);
+                            }
+                        },
+                        complete:function(){
+                            $('#change_message').html('');
+                        }
+                    });
+                },
+                errorElement:"p",
+                errorLabelContainer: "#change_message"
+            });
+        });
+    });
+    
+</script>
+
